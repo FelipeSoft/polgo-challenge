@@ -21,19 +21,20 @@ export default class ExpressAdapter implements HttpServerAdapter {
     }
 
     public middleware(): void {
-        const allowedOrigins = [process.env.KNOWN_ORIGIN];
+        // const allowedOrigins = [process.env.KNOWN_ORIGIN];
 
         this.app.use(bodyparser.json());
         this.app.use(urlencoded({ extended: true }));
-        this.app.use(cors({
-            origin: (origin, callback) => {
-                if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-                    callback(null, true);
-                } else {
-                    callback(new Error("Not allowed by CORS"));
-                }
-            }
-        }));
+        this.app.use(cors());
+        // this.app.use(cors({
+        //     origin: (origin, callback) => {
+        //         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        //             callback(null, true);
+        //         } else {
+        //             callback(new Error("Not allowed by CORS"));
+        //         }
+        //     }
+        // }));
     }
 
     public listen(port: number): void {
