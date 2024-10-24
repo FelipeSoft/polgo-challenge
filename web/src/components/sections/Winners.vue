@@ -17,10 +17,10 @@ const searchByWinners = async () => {
 }
 
 const formatDate = (timestamp) => {
-    const fixZero = (time) => time < 10 ? `0${time}` : 0 ;
+    const fixZero = (time) => time < 10 ? `0${time}` : time;
 
     const date = new Date(timestamp);
-    const day = date.getDate() + 1;
+    const day = date.getDate(); 
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${fixZero(day)}/${fixZero(month)}/${year}`;
